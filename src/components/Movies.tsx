@@ -5,6 +5,7 @@ import {
   createSearchParams,
   useSearchParams,
 } from "react-router-dom";
+import MovieCard from "./MovieCard";
 
 const Movies: React.FC = () => {
   const navigate = useNavigate();
@@ -33,13 +34,26 @@ const Movies: React.FC = () => {
   return (
     <div>
       <ul>
-        {data?.data?.searchMovies?.map((movie: { id: any; name: string }) => {
-          return (
-            <li key={movie?.id} onClick={() => getMovieDetails(movie.id)}>
-              <h1>title:{movie.name}</h1>
-            </li>
-          );
-        })}
+        {data?.data?.searchMovies?.map(
+          (movie: {
+            id: any;
+            name: string;
+            title: string;
+            overview: string;
+            poster: { medium: string };
+          }) => {
+            return (
+              <MovieCard
+                id={movie.id}
+                name={movie.name}
+                title={movie.title}
+                overview={movie.overview}
+                imgUrl={movie.poster?.medium}
+                getMovieDetails={getMovieDetails}
+              />
+            );
+          }
+        )}
       </ul>
     </div>
   );

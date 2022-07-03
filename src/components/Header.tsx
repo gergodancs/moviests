@@ -3,9 +3,9 @@ import SearchBar from "./SearchBar";
 
 const Header: React.FC<{ children?: React.ReactNode }> = (props) => {
   return (
-    <div>
+    <div className="w-full xl:w-[90%] h-[100vh] mx-auto bg-slate-200">
       <SearchBar />
-      <main>{props.children}</main>
+      <main className="h-[90%%]">{props.children}</main>
     </div>
   );
 };

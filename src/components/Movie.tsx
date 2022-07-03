@@ -26,8 +26,18 @@ const Movie: React.FC = () => {
   );
 
   return (
-    <div>
-      <h3>{movie[0]?.name}</h3>
+    <div className="p-6 max-w-[90%] md:max-w-[70%] h-[400px] mx-auto bg-slate-100 rounded-xl shadow-md flex flex-col items-center md:flex-row space-x-4 mt-10">
+      <div className="flex flex-col gap-3 ">
+        <h1 className="text-center font-bold text-2xl   hover:text-[#333] ">
+          {movie[0]?.name}
+        </h1>
+        <span>{movie[0]?.overview}</span>
+      </div>
+      <img
+        className="max-h-[250px]"
+        src={movie[0]?.poster?.medium}
+        alt="pics"
+      />
     </div>
   );
 };

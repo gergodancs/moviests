@@ -44,7 +44,7 @@ const Movies: React.FC = () => {
   return (
     <div>
       <ul>
-        {data?.data?.searchMovies?.map((movie: Movie) => {
+        {data.data?.searchMovies?.map((movie: Movie) => {
           return (
             <MovieCard
               id={movie.id}

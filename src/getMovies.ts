@@ -21,25 +21,13 @@ async function fetchSingleMovies(id: string | null): Promise<any> {
 async function fetchMoviesHandler(searchText: string | null): Promise<any> {
   const movies_query = `{
           searchMovies(query: "${searchText}") {
-            id
-            keywords{
-              name
-            }
-            similar{
-              name
-              overview
-              poster{
-                medium
-              }
-            }
+            id 
             name
+            overview
             poster{
               medium
             }
-            overview
-            releaseDate
-            
-          }
+           }
         }`;
 
   const response = await fetch("https://tmdb.sandbox.zoosh.ie/dev/grphql/", {

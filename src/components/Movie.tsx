@@ -8,9 +8,9 @@ const Movie: React.FC = () => {
 
   const paramsId = params.id ? params.id : "";
 
-  const { data, isFetching, isError } = useSingleMoviesQuery(paramsId);
+  const { data, isLoading, isError } = useSingleMoviesQuery(paramsId);
 
-  if (isFetching) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading...</div>;
   if (isError)
     return (
       <div>

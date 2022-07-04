@@ -18,7 +18,7 @@ type Movie = {
 const Movies: React.FC = () => {
   const navigate = useNavigate();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const title = searchParams.get("title");
 
   const { data, isLoading, isError } = useMoviesQuery(title);

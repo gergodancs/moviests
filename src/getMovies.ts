@@ -1,6 +1,30 @@
 import { useQuery } from "react-query";
 
-const fetchMoviesHandler = async (searchText) => {
+type MovieData = {
+  data: {
+    searchMovies?: Array<{
+      id: string;
+      keywords: Array<{
+        name: string;
+      }>;
+      name: string;
+      overview: string;
+      poster: {
+        medium: string;
+      };
+      releaseDate: string;
+      similar: Array<{
+        name: string;
+        overview: string;
+      }>;
+    }>;
+  };
+};
+type QueryData = {
+  data: MovieData;
+};
+//a promise után szerettem volna MovieData||QueryData type-ot de nem jött össze
+async function fetchMoviesHandler(searchText: string | null): Promise<any> {
   const movies_query = `{
           searchMovies(query: "${searchText}") {
             id
@@ -31,8 +55,8 @@ const fetchMoviesHandler = async (searchText) => {
   });
 
   return response.json();
-};
+}
 
-export const useMoviesQuery = (searchText) => {
+export const useMoviesQuery = (searchText: string | null) => {
   return useQuery(["movies", searchText], () => fetchMoviesHandler(searchText));
 };

@@ -31,6 +31,8 @@ const Movies: React.FC = () => {
     });
   };
 
+  console.log(data);
+
   return (
     <div>
       <ul>

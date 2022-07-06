@@ -1,13 +1,10 @@
 import React from "react";
-import { useSearchParams } from "react-router-dom";
-
 import { useSingleMoviesQuery } from "../getMovies";
 
-const Movie: React.FC = () => {
-  const [searchParams] = useSearchParams();
-  const paramsId = searchParams.get("id");
+const Movie: React.FC<{ id: string }> = (props) => {
+  const { id } = props;
 
-  const { data, isLoading, isError } = useSingleMoviesQuery(paramsId);
+  const { data, isLoading, isError } = useSingleMoviesQuery(id);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError)

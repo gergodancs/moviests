@@ -1,10 +1,6 @@
 import React from "react";
 import { useMoviesQuery } from "../getMovies";
-import {
-  useNavigate,
-  createSearchParams,
-  useSearchParams,
-} from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import MovieCard from "./MovieCard";
 
 type Movie = {
@@ -18,7 +14,7 @@ type Movie = {
 const Movies: React.FC = () => {
   const navigate = useNavigate();
 
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const title = searchParams.get("title");
 
   const { data, isLoading, isError } = useMoviesQuery(title);
@@ -31,15 +27,13 @@ const Movies: React.FC = () => {
       </div>
     );
   const getMovieDetails = (id: string) => {
+    searchParams.set("id", id);
+    setSearchParams(searchParams);
     navigate({
-      pathname: `/movie/${id}`,
-      search: createSearchParams({
-        title: title ? title : "",
-      }).toString(),
+      pathname: "/movie",
+      search: searchParams.toString(),
     });
   };
-
-  console.log(data);
 
   return (
     <div>
@@ -47,6 +41,7 @@ const Movies: React.FC = () => {
         {data.data?.searchMovies?.map((movie: Movie) => {
           return (
             <MovieCard
+              key={movie.id}
               id={movie.id}
               name={movie.name}
               title={movie.title}

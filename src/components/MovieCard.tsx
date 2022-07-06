@@ -17,7 +17,7 @@ const MovieCard: React.FC<{
     >
       <div className="flex flex-col gap-3 ">
         <h1 className="text-center font-bold text-2xl   hover:text-[#333] ">
-          {props.title}
+          {props.name}
         </h1>
         <span>{props.overview}</span>
       </div>

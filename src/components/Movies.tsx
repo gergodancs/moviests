@@ -1,9 +1,9 @@
 import React from "react";
 import { useMoviesQuery } from "../getMovies";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import MovieCard from "./MovieCard";
-
-type Movie = {
+import Movie from "./Movie";
+type MovieType = {
   id: any;
   name: string;
   title: string;
@@ -12,10 +12,9 @@ type Movie = {
 };
 
 const Movies: React.FC = () => {
-  const navigate = useNavigate();
-
   const [searchParams, setSearchParams] = useSearchParams();
   const title = searchParams.get("title");
+  const id = searchParams.get("id");
 
   const { data, isLoading, isError } = useMoviesQuery(title);
 
@@ -29,16 +28,16 @@ const Movies: React.FC = () => {
   const getMovieDetails = (id: string) => {
     searchParams.set("id", id);
     setSearchParams(searchParams);
-    navigate({
-      pathname: "/movie",
-      search: searchParams.toString(),
-    });
   };
+
+  if (id) {
+    return <Movie />;
+  }
 
   return (
     <div>
       <ul>
-        {data.data?.searchMovies?.map((movie: Movie) => {
+        {data.data?.searchMovies?.map((movie: MovieType) => {
           return (
             <MovieCard
               key={movie.id}

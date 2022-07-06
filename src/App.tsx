@@ -3,9 +3,16 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import Header from "./components/Header";
 import Movies from "./components/Movies";
-import Movie from "./components/Movie";
 
-const queryClient = new QueryClient();
+import { ReactQueryDevtools } from "react-query/devtools";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 function App() {
   return (
@@ -15,9 +22,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Outlet />} />
             <Route path="/movies" element={<Movies />} />
-            <Route path="/movie" element={<Movie />} />
           </Routes>
         </Header>
+        <ReactQueryDevtools />
       </BrowserRouter>
     </QueryClientProvider>
   );

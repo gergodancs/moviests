@@ -3,7 +3,7 @@ import React from "react";
 const MovieCard: React.FC<{
   id: string;
   name: string;
-  title: string;
+
   overview: string;
   imgUrl: string;
   getMovieDetails: (id: string, name: string) => void;

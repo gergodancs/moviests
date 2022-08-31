@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet,
+  useLocation,
+} from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import Header from "./components/Header";
 import Movies from "./components/Movies";
@@ -13,6 +19,11 @@ const queryClient = new QueryClient({
     },
   },
 });
+export const LocationDisplay = () => {
+  const location = useLocation();
+
+  return <div data-testid="location-display">{location.pathname}</div>;
+};
 
 function App() {
   return (

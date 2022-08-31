@@ -1,13 +1,7 @@
 import React from "react";
 import { useMoviesQuery } from "../getMovies";
 import MovieCard from "./MovieCard";
-
-type MovieType = {
-  id: any;
-  name: string;
-  overview: string;
-  poster: { medium: string };
-};
+import { SingleMovie } from "../model";
 
 const MoviesList: React.FC<{
   title: string | null;
@@ -21,14 +15,14 @@ const MoviesList: React.FC<{
   if (isError)
     return (
       <div>
-        Error: <p>later..</p>
+        Error: <p>{}</p>
       </div>
     );
 
   return (
     <div>
       <ul>
-        {data?.data.searchMovies.map((movie: MovieType) => {
+        {data?.data.searchMovies.map((movie: SingleMovie) => {
           return (
             <MovieCard
               key={movie.id}

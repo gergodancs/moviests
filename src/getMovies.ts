@@ -1,29 +1,9 @@
 import { useQuery } from "react-query";
+import { MovieDataResponse, MoviesDataResponse } from "./model";
 
-type MovieData = {
-  data: {
-    movie: {
-      id: string;
-      name: string;
-      overview: string;
-      poster: { medium: string };
-    };
-  };
-};
-type MoviesData = {
-  data: {
-    searchMovies: [
-      {
-        id: string;
-        name: string;
-        overview: string;
-        poster: { medium: string };
-      }
-    ];
-  };
-};
-
-async function fetchSingleMovies(id: string | null): Promise<MovieData> {
+async function fetchSingleMovies(
+  id: string | null
+): Promise<MovieDataResponse> {
   const movies_query = `{
     movie(id:${id}){
       id
@@ -40,10 +20,10 @@ async function fetchSingleMovies(id: string | null): Promise<MovieData> {
   });
   return response.json();
 }
-//a promise után szerettem volna MovieData||QueryData type-ot de nem jött össze
+
 async function fetchMoviesHandler(
   searchText: string | null
-): Promise<MoviesData> {
+): Promise<MoviesDataResponse> {
   const movies_query = `{
           searchMovies(query: "${searchText}") {
             id 

@@ -20,22 +20,20 @@ const MoviesList: React.FC<{
     );
 
   return (
-    <div>
-      <ul>
-        {data?.data.searchMovies.map((movie: SingleMovie) => {
-          return (
-            <MovieCard
-              key={movie.id}
-              id={movie.id}
-              name={movie.name}
-              overview={movie.overview}
-              imgUrl={movie.poster?.medium}
-              getMovieDetails={getMovieDetails}
-            />
-          );
-        })}
-      </ul>
-    </div>
+    <ul className="grid grid-cols-3 gap-5">
+      {data?.data.searchMovies.map((movie: SingleMovie) => {
+        return (
+          <MovieCard
+            key={movie.id}
+            id={movie.id}
+            name={movie.name}
+            overview={movie.overview.substring(0, 100)}
+            imgUrl={movie.poster?.medium}
+            getMovieDetails={getMovieDetails}
+          />
+        );
+      })}
+    </ul>
   );
 };
 

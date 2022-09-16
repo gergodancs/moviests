@@ -22,9 +22,8 @@ const SearchBar: React.FC = () => {
   return (
     <form
       onSubmit={showMoviesList}
-      className=" flex flex-col justify-center gap-2  mx-auto  p-10 bg-slate-400 "
+      className=" flex flex-col justify-center gap-2  mx-auto  p-2 bg-slate-400 fixed top-0 left-0 right-0 opacity-80"
     >
-      <h1 className="text-center font-bold text-3xl tracking-widest">Movies</h1>
       <div className="flex w-full justify-center gap-2 h-10">
         <input
           className="md:w-[50%] px-5 focus:outline-none   border border-gray-300 rounded-lg"

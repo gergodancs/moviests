@@ -20,7 +20,7 @@ const MoviesList: React.FC<{
     );
 
   return (
-    <ul className="grid grid-cols-3 gap-5">
+    <ul className="grid grid-cols-4 gap-5">
       {data?.data.searchMovies.map((movie: SingleMovie) => {
         return (
           <MovieCard
